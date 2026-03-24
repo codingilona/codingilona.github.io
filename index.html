@@ -506,7 +506,15 @@ function openModal(id) {
   document.body.style.overflow = 'hidden';
 }
 
+
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+
+function handleOverlayClick(event) {
+  if (event.target.id === 'modal-overlay') {
+    closeModal();
+  }
+}
+</script>
