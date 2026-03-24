@@ -17,6 +17,20 @@
     --warm-yellow: #E8C84A;
     --border: rgba(28,25,22,0.12);
   }
+  .hero-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.profile-pic {
+  width: 120px;        /* adjust size here */
+  height: 120px;
+  border-radius: 50%;  /* makes it round */
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:var(--cream); color:var(--ink); font-family:'DM Sans',sans-serif; min-height:100vh; overflow-x:hidden; }
 
@@ -152,6 +166,17 @@
     .hero-name{font-size:2.8rem;}
     .skills-wrap,.scores-grid,.interests-grid{grid-template-columns:1fr;}
   }
+  @media(max-width:600px){
+  .hero-name-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+  }
+}
 </style>
 </head>
 <body>
@@ -170,7 +195,10 @@
 
 <div class="hero">
   <div class="hero-eyebrow">Data Scientist &amp; ML Engineer</div>
+  <div class="hero-name-wrap">
+  <img src="profilpic.jpeg" alt="Profile picture" class="profile-pic">
   <h1 class="hero-name">Yu-Chen<br><em>(Ilona)</em> Tung</h1>
+</div>
   <p class="hero-sub">MS Information Management at UIUC · Building ML pipelines, NLP systems, and data stories that actually mean something.</p>
   <div class="hero-contacts">
     <a class="contact-chip" href="/cdn-cgi/l/email-protection#354c40565d505b1b5c595a5b541b41405b52755258545c591b565a58">
