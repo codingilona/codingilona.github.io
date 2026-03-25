@@ -17,21 +17,7 @@
     --warm-yellow: #E8C84A;
     --border: rgba(28,25,22,0.12);
   }
-  .hero-name-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 28px;
-}
 
-.profile-pic {
-  width:250px;        /* adjust size here */
-  height: 250px;
-  border-radius: 50%;  /* makes it round */
-  object-fit: cover;
-  border: 3px solid white;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:var(--cream); color:var(--ink); font-family:'DM Sans',sans-serif; min-height:100vh; overflow-x:hidden; }
 
@@ -43,18 +29,21 @@
   .nav-links a { font-size:0.82rem; color:var(--ink-muted); text-decoration:none; letter-spacing:0.04em; transition:color .2s; }
   .nav-links a:hover { color:var(--ink); }
 
+  /* Hero */
   .hero { max-width:900px; margin:0 auto; padding:80px 48px 60px; }
   .hero-eyebrow { font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.18em; color:var(--rust); text-transform:uppercase; margin-bottom:20px; display:flex; align-items:center; gap:10px; }
   .hero-eyebrow::before { content:''; width:28px; height:1px; background:var(--rust); }
+  .hero-name-wrap { display:flex; align-items:center; justify-content:space-between; gap:28px; }
   .hero-name { font-family:'Playfair Display',serif; font-size:clamp(3rem,7vw,5.5rem); line-height:1.0; letter-spacing:-0.03em; color:var(--ink); margin-bottom:10px; }
   .hero-name em { font-style:italic; color:var(--rust); }
+  .profile-pic { width:200px; height:200px; border-radius:50%; object-fit:cover; border:3px solid white; box-shadow:0 6px 20px rgba(0,0,0,0.12); flex-shrink:0; }
   .hero-sub { font-size:1.05rem; color:var(--ink-muted); font-weight:300; margin-bottom:32px; max-width:480px; line-height:1.65; }
   .hero-contacts { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:40px; }
-  .contact-chip { display:inline-flex; align-items:center; gap:7px; font-size:0.78rem; color:var(--ink); background:white; border:1px solid var(--border); border-radius:100px; padding:7px 14px; text-decoration:none; transition:border-color .2s, box-shadow .2s; }
+  .contact-chip { display:inline-flex; align-items:center; gap:7px; font-size:0.78rem; color:var(--ink); background:white; border:1px solid var(--border); border-radius:100px; padding:7px 14px; text-decoration:none; transition:border-color .2s,box-shadow .2s; }
   .contact-chip:hover { border-color:var(--rust); box-shadow:0 2px 12px rgba(196,84,26,.1); }
 
+  /* Main */
   .main { max-width:900px; margin:0 auto; padding:0 48px 80px; }
-
   .section-heading { display:flex; align-items:center; gap:16px; margin-bottom:28px; }
   .section-heading h2 { font-family:'Playfair Display',serif; font-size:1.9rem; font-weight:400; letter-spacing:-0.02em; white-space:nowrap; }
   .section-heading h2 em { font-style:italic; color:var(--rust); }
@@ -95,14 +84,81 @@
   .project-arrow { width:36px; height:36px; border-radius:50%; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--ink-muted); flex-shrink:0; transition:background .2s,color .2s,border-color .2s; }
   .project-card:hover .project-arrow { background:var(--rust); color:white; border-color:var(--rust); }
 
-  /* Education */
+  /* ── Education flip cards ── */
   .edu-grid { display:grid; gap:12px; }
-  .edu-card { background:white; border:1px solid var(--border); border-radius:16px; padding:22px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+
+  .edu-flip {
+    perspective: 1200px;
+    cursor: pointer;
+    transition: height .5s cubic-bezier(.4,0,.2,1);
+  }
+  .edu-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform .55s cubic-bezier(.4,0,.2,1);
+  }
+  .edu-flip.flipped .edu-flip-inner {
+    transform: rotateX(180deg);
+  }
+  .edu-front,
+  .edu-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+  /* front sits in normal flow to set the initial height */
+  .edu-front {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 28px;
+  }
+  /* back is absolute so it overlays the front */
+  .edu-back {
+    position: absolute;
+    inset: 0;
+    transform: rotateX(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 28px;
+    overflow: hidden;
+  }
+
   .edu-school { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:500; }
   .edu-degree { font-size:0.82rem; color:var(--ink-muted); margin-top:3px; }
   .edu-right { text-align:right; flex-shrink:0; }
   .edu-gpa { font-family:'DM Mono',monospace; font-size:1.1rem; color:var(--rust); }
   .edu-year { font-size:0.72rem; color:var(--ink-muted); margin-top:3px; }
+
+  .edu-flip-hint {
+    display: flex; align-items: center; gap: 5px;
+    font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--ink-muted);
+    margin-top: 6px; justify-content: flex-end;
+    opacity: 0; transition: opacity .2s;
+  }
+  .edu-flip:hover:not(.flipped) .edu-flip-hint { opacity: 1; }
+
+  .edu-courses-label {
+    font-family:'DM Mono',monospace; font-size:0.62rem;
+    letter-spacing:0.12em; color:var(--rust); text-transform:uppercase;
+  }
+  .edu-courses { display:flex; flex-wrap:wrap; gap:6px; }
+  .edu-course-pill {
+    font-size:0.74rem; color:var(--ink); background:var(--cream);
+    border:1px solid var(--border); padding:3px 10px; border-radius:100px;
+  }
+  .edu-back-hint {
+    position: absolute; top: 12px; right: 16px;
+    font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--ink-muted);
+    display: flex; align-items: center; gap: 4px;
+  }
 
   /* Award */
   .award-card { background:linear-gradient(135deg,#FFFBEB,#FEF3C7); border:1px solid #FDE68A; border-radius:20px; padding:28px 32px; display:flex; align-items:center; gap:24px; }
@@ -162,22 +218,13 @@
   .footer-note { font-family:'DM Mono',monospace; font-size:.65rem; color:var(--ink-muted); letter-spacing:.08em; }
 
   @media(max-width:600px){
-    nav,footer{padding:16px 24px;}
-    .hero,.main{padding-left:24px;padding-right:24px;}
-    .hero-name{font-size:2.8rem;}
-    .skills-wrap,.scores-grid,.interests-grid{grid-template-columns:1fr;}
+    nav,footer { padding:16px 24px; }
+    .hero,.main { padding-left:24px; padding-right:24px; }
+    .hero-name { font-size:2.8rem; }
+    .hero-name-wrap { flex-direction:column; align-items:flex-start; }
+    .profile-pic { width:100px; height:100px; }
+    .skills-wrap,.scores-grid,.interests-grid { grid-template-columns:1fr; }
   }
-  @media(max-width:600px){
-  .hero-name-wrap {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .profile-pic {
-    width: 100px;
-    height: 100px;
-  }
-}
 </style>
 </head>
 <body>
@@ -190,21 +237,21 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#education">Education</a></li>
-    <li><a href="/cdn-cgi/l/email-protection#255c50464d404b0b4c494a4b440b51504b42654248444c490b464a48">Contact</a></li>
+    <li><a href="mailto:yuchen.ilona.tung@gmail.com">Contact</a></li>
   </ul>
 </nav>
 
 <div class="hero">
   <div class="hero-eyebrow">Data Scientist &amp; ML Engineer</div>
   <div class="hero-name-wrap">
-  <h1 class="hero-name">Yu-Chen<br><em>(Ilona)</em> Tung</h1>
-  <img src="profilepic.jpeg" alt="Profile picture" class="profile-pic">
-</div>
+    <h1 class="hero-name">Yu-Chen<br><em>(Ilona)</em> Tung</h1>
+    <img src="profilepic.jpeg" alt="Profile picture" class="profile-pic">
+  </div>
   <p class="hero-sub">MS Information Management at UIUC · Building ML pipelines, NLP systems, and data stories that actually mean something.</p>
   <div class="hero-contacts">
-    <a class="contact-chip" href="/cdn-cgi/l/email-protection#354c40565d505b1b5c595a5b541b41405b52755258545c591b565a58">
+    <a class="contact-chip" href="mailto:yuchen.ilona.tung@gmail.com">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      <span class="__cf_email__" data-cfemail="fe878b9d969b90d0979291909fd08a8b9099be99939f9792d09d9193">yuchen.ilona.tung@gmail.com</span>
+      yuchen.ilona.tung@gmail.com
     </a>
     <a class="contact-chip" href="https://linkedin.com/in/yuchentung-data" target="_blank">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
@@ -344,14 +391,76 @@
       <div class="section-rule"></div>
     </div>
     <div class="edu-grid">
-      <div class="edu-card">
-        <div><div class="edu-school">University of Illinois at Urbana-Champaign</div><div class="edu-degree">Master of Information Management · Expected Jun. 2027</div></div>
-        <div class="edu-right"><div class="edu-gpa">4.00</div><div class="edu-year">GPA / 4.00</div></div>
+
+      <!-- UIUC -->
+      <div class="edu-flip">
+        <div class="edu-flip-inner">
+          <div class="edu-front">
+            <div>
+              <div class="edu-school">University of Illinois at Urbana-Champaign</div>
+              <div class="edu-degree">Master of Information Management · Expected Jun. 2027</div>
+            </div>
+            <div class="edu-right">
+              <div class="edu-gpa">4.00</div>
+              <div class="edu-year">GPA / 4.00</div>
+              <div class="edu-flip-hint">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.5 9A9 9 0 0 0 5.6 5.6L1 10M3.5 15a9 9 0 0 0 14.9 3.4L23 14"/></svg>
+                flip for courses
+              </div>
+            </div>
+          </div>
+          <div class="edu-back">
+            <span class="edu-back-hint">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.5 9A9 9 0 0 0 5.6 5.6L1 10M3.5 15a9 9 0 0 0 14.9 3.4L23 14"/></svg>
+              flip back
+            </span>
+            <div class="edu-courses-label">Relevant Coursework</div>
+            <div class="edu-courses">
+              <span class="edu-course-pill">IS507 · Data, Stat, Info</span>
+              <span class="edu-course-pill">IS515 · Information Modeling</span>
+              <span class="edu-course-pill">IS525 · Data Warehousing & BI</span>
+              <!-- Add more: <span class="edu-course-pill">Course Name</span> -->
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="edu-card">
-        <div><div class="edu-school">National Sun Yat-sen University</div><div class="edu-degree">Bachelor of Information Management · Sep. 2021 – Jun. 2025</div></div>
-        <div class="edu-right"><div class="edu-gpa">3.84</div><div class="edu-year">GPA / 4.00</div></div>
+
+      <!-- NSYSU -->
+      <div class="edu-flip">
+        <div class="edu-flip-inner">
+          <div class="edu-front">
+            <div>
+              <div class="edu-school">National Sun Yat-sen University</div>
+              <div class="edu-degree">Bachelor of Information Management · Sep. 2021 – Jun. 2025</div>
+            </div>
+            <div class="edu-right">
+              <div class="edu-gpa">3.84</div>
+              <div class="edu-year">GPA / 4.00</div>
+              <div class="edu-flip-hint">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.5 9A9 9 0 0 0 5.6 5.6L1 10M3.5 15a9 9 0 0 0 14.9 3.4L23 14"/></svg>
+                flip for courses
+              </div>
+            </div>
+          </div>
+          <div class="edu-back">
+            <span class="edu-back-hint">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.5 9A9 9 0 0 0 5.6 5.6L1 10M3.5 15a9 9 0 0 0 14.9 3.4L23 14"/></svg>
+              flip back
+            </span>
+            <div class="edu-courses-label">Relevant Coursework</div>
+            <div class="edu-courses">
+              <span class="edu-course-pill">Statistical Data Analysis</span>
+              <span class="edu-course-pill">Database Management</span>
+              <span class="edu-course-pill">Data Visualization</span>
+              <span class="edu-course-pill">Deep Learning</span>
+              <span class="edu-course-pill">Social Media Analysis</span>
+              <span class="edu-course-pill">Data Mining</span>
+              <!-- Add more: <span class="edu-course-pill">Course Name</span> -->
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -370,7 +479,6 @@
     </div>
   </section>
 
-  <!-- Test Scores -->
   <section id="scores">
     <div class="section-heading">
       <span class="section-num">06</span>
@@ -415,7 +523,6 @@
     </div>
   </section>
 
-  <!-- Interests -->
   <section id="interests">
     <div class="section-heading">
       <span class="section-num">07</span>
@@ -467,14 +574,14 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+/* ── Project modal ── */
 const projects = {
   wishgather: {
     title: 'WishGather',
     meta: 'Graduation Project · Nov. 2023 – Nov. 2024 · 🥈 Innoserve International 2nd Place',
     desc: 'AI-assisted sustainable offering platform featuring an image-recognition pipeline trained on 1,000+ images across 30+ classes, a RAG-powered AI chatbot, and a React Native mobile frontend. Achieved 20–50% improvement in minority-class recall through dataset balancing.',
     pills: ['PyTorch','TensorFlow','RAG','React Native','PHP','SQL'],
-    // Add your photos here: photos: ['./img/wishgather-1.jpg', './img/wishgather-2.jpg']
     photos: []
   },
   sportsnet: {
@@ -523,8 +630,7 @@ function openModal(id) {
     slot.className = 'gallery-slot';
     if (p.photos[i]) {
       const img = document.createElement('img');
-      img.src = p.photos[i];
-      img.alt = `${p.title} photo ${i+1}`;
+      img.src = p.photos[i]; img.alt = `${p.title} photo ${i+1}`;
       slot.appendChild(img);
     } else {
       slot.innerHTML = `${ph}<span>add photo ${i+1}</span>`;
@@ -535,15 +641,44 @@ function openModal(id) {
   document.body.style.overflow = 'hidden';
 }
 
-
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
 
-function handleOverlayClick(event) {
-  if (event.target.id === 'modal-overlay') {
-    closeModal();
-  }
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
 }
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ── Education flip cards ── */
+document.querySelectorAll('.edu-flip').forEach(card => {
+  const front = card.querySelector('.edu-front');
+  const back  = card.querySelector('.edu-back');
+
+  // Use the front's natural rendered height as the collapsed size
+  function frontH() { return front.getBoundingClientRect().height; }
+
+  // Measure the back by briefly making it static
+  function backH() {
+    back.style.cssText = 'position:static;transform:none;visibility:hidden;';
+    const h = back.scrollHeight;
+    back.style.cssText = '';
+    return h;
+  }
+
+  // Init: lock height to front size
+  document.fonts.ready.then(() => {
+    card.style.height = frontH() + 'px';
+  });
+
+  card.addEventListener('click', () => {
+    const flipping = !card.classList.contains('flipped');
+    card.style.height = (flipping ? backH() : frontH()) + 'px';
+    card.classList.toggle('flipped');
+  });
+});
 </script>
+</body>
+</html>
