@@ -410,7 +410,7 @@
       border-color: var(--rust);
     }
 
-    /* ── Education flip cards ── */
+    /* Education flip cards */
     .edu-grid {
       display: grid;
       gap: 12px;
@@ -443,7 +443,6 @@
       border-radius: 16px;
     }
 
-    /* front sits in normal flow to set the initial height */
     .edu-front {
       display: flex;
       align-items: center;
@@ -452,7 +451,6 @@
       padding: 20px 28px;
     }
 
-    /* back is absolute so it overlays the front */
     .edu-back {
       position: absolute;
       inset: 0;
@@ -513,7 +511,6 @@
 
     .edu-flip:hover {
       transform: translateY(-3px);
-      border-color: rgba(196, 84, 26, .35);
       box-shadow: 0 8px 32px rgba(107, 76, 59, .1);
     }
 
@@ -587,151 +584,114 @@
       margin-top: 4px;
     }
 
-    /* Modal */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(28, 25, 22, .55);
-      backdrop-filter: blur(6px);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .modal-overlay.open {
-      display: flex;
-    }
-
-    .modal {
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      width: 100%;
-      max-width: 640px;
-      max-height: 90vh;
-      overflow-y: auto;
-      animation: modalIn .3s cubic-bezier(.34, 1.56, .64, 1);
-    }
-
-    @keyframes modalIn {
-      from {
-        opacity: 0;
-        transform: scale(.94) translateY(20px)
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0)
-      }
-    }
-
-    .modal-stripe {
-      height: 5px;
-      border-radius: 24px 24px 0 0;
-      background: repeating-linear-gradient(90deg, var(--rust) 0 20px, var(--warm-yellow) 20px 40px, var(--sage) 40px 60px);
-    }
-
-    .modal-body {
-      padding: 32px;
-    }
-
-    .modal-close {
-      float: right;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
+    /* ── Competition ── */
+    .comp-card {
       background: white;
-      cursor: pointer;
-      font-size: .9rem;
-      color: var(--ink-muted);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+
+    .comp-sidebar {
+      width: 6px;
+      background: repeating-linear-gradient(180deg, var(--rust) 0 12px, var(--warm-yellow) 12px 24px, var(--sage) 24px 36px, var(--sky) 36px 48px);
+    }
+
+    .comp-content {
+      padding: 28px 32px;
+    }
+
+    .comp-header {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: color .2s, border-color .2s;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
     }
 
-    .modal-close:hover {
-      color: var(--rust);
-      border-color: var(--rust);
-    }
-
-    .modal-title {
+    .comp-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.7rem;
+      font-size: 1.3rem;
       font-weight: 500;
       color: var(--ink);
-      margin-bottom: 4px;
-      clear: right;
     }
 
-    .modal-meta {
+    .comp-date {
       font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--ink-muted);
+      font-size: 0.68rem;
+      color: white;
+      background: var(--ink);
+      border-radius: 100px;
+      padding: 4px 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+
+    .comp-task {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--rust);
       margin-bottom: 16px;
+      letter-spacing: 0.04em;
     }
 
-    .modal-desc {
-      font-size: .9rem;
-      color: var(--ink);
-      line-height: 1.7;
-      margin-bottom: 20px;
+    .comp-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 16px 0;
     }
 
-    .modal-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 28px;
-    }
-
-    .gallery-heading {
-      font-family: 'DM Mono', monospace;
-      font-size: .65rem;
+    .comp-body {
+      font-size: 0.9rem;
       color: var(--ink-muted);
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
+      line-height: 1.75;
     }
 
-    .gallery-grid {
+    .comp-body p+p {
+      margin-top: 12px;
+    }
+
+    .comp-takeaways {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
+      margin-top: 20px;
     }
 
-    .gallery-slot {
-      aspect-ratio: 4/3;
+    .comp-takeaway {
+      background: var(--cream);
+      border: 1px solid var(--border);
       border-radius: 12px;
-      border: 1.5px dashed rgba(28, 25, 22, .2);
-      background: white;
+      padding: 14px 16px;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      color: var(--ink-muted);
-      font-size: .68rem;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .comp-takeaway-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .comp-takeaway-text {
+      font-size: 0.78rem;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .comp-takeaway-label {
       font-family: 'DM Mono', monospace;
-      overflow: hidden;
-      position: relative;
-      transition: border-color .2s;
-    }
-
-    .gallery-slot:hover {
-      border-color: var(--rust);
-    }
-
-    .gallery-slot img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 10px;
+      font-size: 0.6rem;
+      color: var(--rust);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
     }
 
     /* Test Scores */
@@ -891,6 +851,153 @@
       padding: 3px 9px;
     }
 
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 25, 22, .55);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: modalIn .3s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: scale(.94) translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0)
+      }
+    }
+
+    .modal-stripe {
+      height: 5px;
+      border-radius: 24px 24px 0 0;
+      background: repeating-linear-gradient(90deg, var(--rust) 0 20px, var(--warm-yellow) 20px 40px, var(--sage) 40px 60px);
+    }
+
+    .modal-body {
+      padding: 32px;
+    }
+
+    .modal-close {
+      float: right;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: white;
+      cursor: pointer;
+      font-size: .9rem;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color .2s, border-color .2s;
+    }
+
+    .modal-close:hover {
+      color: var(--rust);
+      border-color: var(--rust);
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+      clear: right;
+    }
+
+    .modal-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+      margin-bottom: 16px;
+    }
+
+    .modal-desc {
+      font-size: .9rem;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .modal-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 28px;
+    }
+
+    .gallery-heading {
+      font-family: 'DM Mono', monospace;
+      font-size: .65rem;
+      color: var(--ink-muted);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .gallery-slot {
+      aspect-ratio: 4/3;
+      border-radius: 12px;
+      border: 1.5px dashed rgba(28, 25, 22, .2);
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: var(--ink-muted);
+      font-size: .68rem;
+      font-family: 'DM Mono', monospace;
+      overflow: hidden;
+      position: relative;
+      transition: border-color .2s;
+    }
+
+    .gallery-slot:hover {
+      border-color: var(--rust);
+    }
+
+    .gallery-slot img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
     footer {
       border-top: 1px solid var(--border);
       padding: 32px 48px;
@@ -946,7 +1053,8 @@
 
       .skills-wrap,
       .scores-grid,
-      .interests-grid {
+      .interests-grid,
+      .comp-takeaways {
         grid-template-columns: 1fr;
       }
     }
@@ -954,7 +1062,6 @@
 </head>
 
 <body>
-
   <div class="top-stripe"></div>
 
   <nav>
@@ -973,8 +1080,8 @@
       <h1 class="hero-name">Yu-Chen<br><em>(Ilona)</em> Tung</h1>
       <img src="profilepic.jpeg" alt="Profile picture" class="profile-pic">
     </div>
-    <p class="hero-sub">MS Information Management at UIUC · Building ML pipelines, NLP systems, and data stories that
-      actually mean something.</p>
+    <p class="hero-sub">MS Information Management at UIUC · Interested in Data Analysis · Data Visualization · Machine
+      Learning</p>
     <div class="hero-contacts">
       <a class="contact-chip" href="mailto:yuchen.ilona.tung@gmail.com">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1021,9 +1128,10 @@
         <div class="section-rule"></div>
       </div>
       <div class="bio-card">
-        <p class="bio-text">I'm now pursuing my Master's in Information Management at UIUC
-          with a perfect 4.0 GPA for my first semester. My work spans the full pipeline — from wrangling messy data and training deep learning
-          models to building interactive dashboards and deploying AI-powered applications. I'm especially drawn to data visualization, data analysis, machine learning, and making data actually useful for the people who need it.</p>
+        <p class="bio-text">I'm now pursuing my Master's in Information Management at UIUC. My work spans the full
+          pipeline — from dealing with messy data and training deep learning models to building interactive dashboards
+          and deploying AI-powered applications. I'm especially drawn to data visualization, data analysis, machine
+          learning, and making data actually useful for the people who need it.</p>
       </div>
     </section>
 
@@ -1178,7 +1286,6 @@
       </div>
       <div class="edu-grid">
 
-        <!-- UIUC -->
         <div class="edu-flip">
           <div class="edu-flip-inner">
             <div class="edu-front">
@@ -1217,7 +1324,6 @@
           </div>
         </div>
 
-        <!-- NSYSU -->
         <div class="edu-flip">
           <div class="edu-flip-inner">
             <div class="edu-front">
@@ -1278,9 +1384,59 @@
       </div>
     </section>
 
-    <section id="scores">
+    <!-- ── Competition ── -->
+    <section id="competition">
       <div class="section-heading">
         <span class="section-num">06</span>
+        <h2><em>Competition</em></h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-sidebar"></div>
+        <div class="comp-content">
+          <div class="comp-header">
+            <div class="comp-title">UIUC Datathon</div>
+            <span class="comp-date">Mar 29 – 31, 2026</span>
+          </div>
+          <div class="comp-task">
+            Task — Predict customer service call volume for August 2025, every 30 minutes: incoming calls, abandonment
+            rate &amp; average call duration
+          </div>
+          <div class="comp-body">
+            <p>Teamed up with classmates to tackle a real-world forecasting challenge: predicting a customer service
+              center's call volume at 30-minute intervals, including incoming call counts, abandonment rate, and average
+              call duration.</p>
+            <p>This competition pushed me to realize that real-world data analysis isn't just about building the most
+              accurate model — it's about making reliable, practical decisions under uncertainty and incomplete
+              information. Communicating assumptions clearly with teammates turned out to be just as important as the
+              modeling itself.</p>
+          </div>
+          <div class="comp-takeaways">
+            <div class="comp-takeaway">
+              <div class="comp-takeaway-icon">📊</div>
+              <div>
+                <div class="comp-takeaway-label">Key insight</div>
+                <div class="comp-takeaway-text">Real-world analysis means making reliable decisions under uncertainty,
+                  not just chasing accuracy</div>
+              </div>
+            </div>
+            <div class="comp-takeaway">
+              <div class="comp-takeaway-icon">🤝</div>
+              <div>
+                <div class="comp-takeaway-label">Teamwork</div>
+                <div class="comp-takeaway-text">Constant alignment on assumptions strengthened both collaboration and
+                  problem-solving skills</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="scores">
+      <div class="section-heading">
+        <span class="section-num">07</span>
         <h2>Test <em>scores</em></h2>
         <div class="section-rule"></div>
       </div>
@@ -1348,7 +1504,7 @@
 
     <section id="interests">
       <div class="section-heading">
-        <span class="section-num">07</span>
+        <span class="section-num">08</span>
         <h2>Beyond <em>the code</em></h2>
         <div class="section-rule"></div>
       </div>
@@ -1408,14 +1564,14 @@
         meta: 'Graduation Project · Nov. 2023 – Nov. 2024 · 🥈 Innoserve International 2nd Place',
         desc: 'AI-assisted sustainable offering platform featuring an image-recognition pipeline trained on 1,000+ images across 30+ classes, a RAG-powered AI chatbot, and a React Native mobile frontend. Achieved 20–50% improvement in minority-class recall through dataset balancing.',
         pills: ['PyTorch', 'TensorFlow', 'RAG', 'React Native', 'PHP', 'SQL'],
-        photos: ['./WishGather1.jpg','./WishGather2.jpg','./WishGather3.jpg']
+        photos: ['./WishGather1.jpg', './WishGather2.jpg', './WishGather3.jpg']
       },
       sportsnet: {
         title: 'SpOrtsNet',
         meta: 'Deep Learning · Sep. 2024 – Dec. 2024',
         desc: 'Olympics sports recognition system using transfer learning. Optimized data augmentation parameters to push validation accuracy from approximately 75% to over 92%.',
         pills: ['PyTorch', 'TensorFlow', 'Image Classification', 'Data Augmentation'],
-        photos: ['./SportsNet1.png','./SportsNet2.png','./SportsNet3.png']
+        photos: ['./SportsNet1.png', './SportsNet2.png', './SportsNet3.png']
       },
       mcdonald: {
         title: "Taiwan McDonald's Textual Analysis",
@@ -1429,14 +1585,14 @@
         meta: 'Data Warehousing & BI · Oct. 2025 – Dec. 2025',
         desc: 'Conducted EDA to identify genre trends, popular titles, and collection gaps. Built interactive Tableau dashboards to visualize circulation trends and support data-driven acquisitions decisions.',
         pills: ['Tableau', 'EDA', 'Data Warehousing', 'Business Intelligence'],
-        photos: ['./Books1.png','./Books2.png','./Books3.png']
+        photos: ['./Books1.png', './Books2.png', './Books3.png']
       },
       timemachine: {
         title: 'The Reading Time Machine',
         meta: 'HCI Research · Jan. 2026 – present · Advisor: Jill Naiman',
         desc: 'Active research project studying how participants interact with the Zooniverse citizen-science interface. Conducting user interviews and analyzing qualitative data to surface UX insights.',
         pills: ['Qualitative Research', 'User Interviews', 'Zooniverse', 'HCI'],
-        photos: ['./ReadingTimeMachine1.jpg','./ReadingTimeMachine2.jpg','./ReadingTimeMachine3.jpg']
+        photos: ['./ReadingTimeMachine1.jpg', './ReadingTimeMachine2.jpg', './ReadingTimeMachine3.jpg']
       }
     };
 
@@ -1483,10 +1639,7 @@
       const front = card.querySelector('.edu-front');
       const back = card.querySelector('.edu-back');
 
-      // Use the front's natural rendered height as the collapsed size
       function frontH() { return front.getBoundingClientRect().height; }
-
-      // Measure the back by briefly making it static
       function backH() {
         back.style.cssText = 'position:static;transform:none;visibility:hidden;';
         const h = back.scrollHeight;
@@ -1494,7 +1647,6 @@
         return h;
       }
 
-      // Init: lock height to front size
       document.fonts.ready.then(() => {
         card.style.height = frontH() + 'px';
       });
