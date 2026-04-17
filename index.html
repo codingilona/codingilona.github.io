@@ -1594,23 +1594,11 @@
         meta: 'HCI Research · Jan. 2026 – present · Advisor: Jill Naiman',
         desc: 'Active research project studying how participants interact with the Zooniverse citizen-science interface. Conducting user interviews and analyzing qualitative data to surface UX insights. ',
         pills: ['Qualitative Research', 'User Interviews', 'Zooniverse', 'HCI'],
-        photos: ['./ReadingTimeMachine1.jpg', './ReadingTimeMachine3.jpg', './ReadingTimeMachine2.jpg'],
-        link: { label: 'View Poster', url: './your-poster.pdf' }
+        photos: ['./ReadingTimeMachine1.jpg', './ReadingTimeMachine3.jpg', './ReadingTimeMachine2.jpg']
+        
       }
     };
-    const existingLink = document.getElementById('modal-link');
-if (existingLink) existingLink.remove();
-if (p.link) {
-  const btn = document.createElement('a');
-  btn.id = 'modal-link';
-  btn.href = p.link.url;
-  btn.target = '_blank';
-  btn.textContent = '↗ ' + p.link.label;
-  btn.style.cssText = 'display:inline-flex;align-items:center;gap:6px;font-family:"DM Mono",monospace;font-size:0.75rem;color:var(--rust);border:1px solid rgba(196,84,26,.3);border-radius:100px;padding:6px 14px;text-decoration:none;margin-bottom:20px;transition:background .2s;';
-  btn.onmouseenter = () => btn.style.background = 'rgba(196,84,26,.07)';
-  btn.onmouseleave = () => btn.style.background = 'transparent';
-  document.getElementById('modal-pills').after(btn);
-}
+
     const ph = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>`;
 
     function openModal(id) {
