@@ -8,6 +8,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap"
     rel="stylesheet">
+  <link rel="icon" type="image/png" href="./Logo.png">
   <style>
     :root {
       --cream: #F5F0E8;
@@ -128,6 +129,26 @@
       border: 3px solid white;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
       flex-shrink: 0;
+    }
+
+    .hero-typing {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.05rem;
+      color: var(--sage);
+      margin-bottom: 24px;
+      min-height: 1.6em;
+    }
+
+    .hero-typing .cursor {
+      display: inline-block;
+      width: 2px;
+      background: var(--sage);
+      margin-left: 2px;
+      animation: blink 0.9s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
     }
 
     .hero-sub {
@@ -1059,8 +1080,6 @@
       }
     }
   </style>
-   
-   <link rel="icon" type="image/png" href="./Logo.png">
 </head>
 
 <body>
@@ -1082,6 +1101,7 @@
       <h1 class="hero-name">Yu-Chen<br><em>(Ilona)</em> Tung</h1>
       <img src="profilepic.jpeg" alt="Profile picture" class="profile-pic">
     </div>
+    <div class="hero-typing" id="typing-text"></div>
     <p class="hero-sub">MS Information Management at UIUC · Interested in Data Analysis · Data Visualization · Machine
       Learning</p>
     <div class="hero-contacts">
@@ -1099,13 +1119,6 @@
         </svg>
         LinkedIn
       </a>
-      <!-- <a class="contact-chip" href="tel:+12178199684">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path
-            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3 1.07h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z" />
-        </svg>
-        (217) 819-9684
-      </a> -->
       <span class="contact-chip" style="cursor:default">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
@@ -1276,24 +1289,25 @@
               </svg></div>
           </div>
         </div>
-<div class="project-card" onclick="openModal('dataviz')">
-  <div class="project-card-inner">
-    <div class="project-card-left">
-      <div class="project-top">
-        <span class="project-title">Mesozoic Dinosaur Occurrences</span>
-        <span class="project-badge badge-viz">Data Viz</span>
-      </div>
-      <p class="project-desc">Interactive visualizations exploring dinosaur fossil occurrence data across the Mesozoic era — combining geographic, temporal, and taxonomic perspectives using Vega-Lite and Altair.</p>
-      <div class="project-pills">
-        <span class="project-pill">Vega-Lite</span>
-        <span class="project-pill">Altair</span>
-        <span class="project-pill">Python</span>
-        <span class="project-pill">PBDB Data</span>
-      </div>
-    </div>
-    <div class="project-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
-  </div>
-</div>
+
+        <div class="project-card" onclick="openModal('dataviz')">
+          <div class="project-card-inner">
+            <div class="project-card-left">
+              <div class="project-top"><span class="project-title">Mesozoic Dinosaur Occurrences</span><span
+                  class="project-badge badge-viz">Data Viz</span></div>
+              <p class="project-desc">Interactive visualizations exploring dinosaur fossil occurrence data across the
+                Mesozoic era — combining geographic, temporal, and taxonomic perspectives using Vega-Lite and Altair.</p>
+              <div class="project-pills"><span class="project-pill">Vega-Lite</span><span
+                  class="project-pill">Altair</span><span class="project-pill">Python</span><span
+                  class="project-pill">PBDB Data</span></div>
+            </div>
+            <div class="project-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round">
+                <path d="M7 17L17 7M7 7h10v10" />
+              </svg></div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1380,7 +1394,6 @@
                 <span class="edu-course-pill">Deep Learning</span>
                 <span class="edu-course-pill">Social Media Analysis</span>
                 <span class="edu-course-pill">Data Mining</span>
-                <!-- Add more: <span class="edu-course-pill">Course Name</span> -->
               </div>
             </div>
           </div>
@@ -1611,24 +1624,23 @@
       timemachine: {
         title: 'The Reading Time Machine',
         meta: 'HCI Research · Jan. 2026 – present · Advisor: Jill Naiman',
-        desc: 'Active research project studying how participants interact with the Zooniverse citizen-science interface. Conducting user interviews and analyzing qualitative data to surface UX insights. ',
+        desc: 'Active research project studying how participants interact with the Zooniverse citizen-science interface. Conducting user interviews and analyzing qualitative data to surface UX insights.',
         pills: ['Qualitative Research', 'User Interviews', 'Zooniverse', 'HCI'],
         photos: ['./ReadingTimeMachine1.jpg', './ReadingTimeMachine3.jpg', './ReadingTimeMachine2.jpg']
-        
       },
-dataviz: {
-  title: 'Mesozoic Dinosaur Occurrences',
-  meta: 'Data Visualization · Apr. 2026 – May 2026',
-  desc: 'Interactive visualizations exploring dinosaur fossil occurrence data across the Mesozoic era — combining geographic, temporal, and taxonomic perspectives using Vega-Lite and Altair.',
-  pills: ['Vega-Lite', 'Altair', 'Python', 'PBDB Data'],
-  photos: [],
-  links: [
-    { label: 'Viz for Public', url: 'https://huggingface.co/spaces/IS445test/IS445test' },
-    { label: 'Viz for Experts', url: 'https://huggingface.co/spaces/ilonayuchen/dinosaur_dataviz' }
-  ]
-},
+      dataviz: {
+        title: 'Mesozoic Dinosaur Occurrences',
+        meta: 'Data Visualization · Apr. 2026 – May 2026',
+        desc: 'Interactive visualizations exploring dinosaur fossil occurrence data across the Mesozoic era — combining geographic, temporal, and taxonomic perspectives using Vega-Lite and Altair.',
+        pills: ['Vega-Lite', 'Altair', 'Python', 'PBDB Data'],
+        photos: [],
+        links: [
+          { label: 'Live Demo', url: 'https://huggingface.co/spaces/ilonayuchen/dinosaur_dataviz' },
+          { label: 'View Notebook', url: 'https://huggingface.co/spaces/IS445test/IS445test' }
+        ]
+      }
     };
-      
+
     const ph = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>`;
 
     function openModal(id) {
@@ -1652,25 +1664,23 @@ dataviz: {
         }
         gallery.appendChild(slot);
       }
-      // clear any previous link buttons
-document.querySelectorAll('.modal-link-btn').forEach(el => el.remove());
-// inject links if present
-if (p.links) {
-  const linkWrap = document.createElement('div');
-  linkWrap.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;';
-  p.links.forEach(l => {
-    const btn = document.createElement('a');
-    btn.className = 'modal-link-btn';
-    btn.href = l.url;
-    btn.target = '_blank';
-    btn.textContent = '↗ ' + l.label;
-    btn.style.cssText = 'display:inline-flex;align-items:center;font-family:"DM Mono",monospace;font-size:0.75rem;color:var(--rust);border:1px solid rgba(196,84,26,.3);border-radius:100px;padding:6px 14px;text-decoration:none;transition:background .2s;';
-    btn.onmouseenter = () => btn.style.background = 'rgba(196,84,26,.07)';
-    btn.onmouseleave = () => btn.style.background = 'transparent';
-    linkWrap.appendChild(btn);
-  });
-  document.getElementById('modal-pills').after(linkWrap);
-}
+      document.querySelectorAll('.modal-link-btn').forEach(el => el.remove());
+      if (p.links) {
+        const linkWrap = document.createElement('div');
+        linkWrap.className = 'modal-link-btn';
+        linkWrap.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;';
+        p.links.forEach(l => {
+          const btn = document.createElement('a');
+          btn.href = l.url;
+          btn.target = '_blank';
+          btn.textContent = '↗ ' + l.label;
+          btn.style.cssText = 'display:inline-flex;align-items:center;font-family:"DM Mono",monospace;font-size:0.75rem;color:var(--rust);border:1px solid rgba(196,84,26,.3);border-radius:100px;padding:6px 14px;text-decoration:none;transition:background .2s;';
+          btn.onmouseenter = () => btn.style.background = 'rgba(196,84,26,.07)';
+          btn.onmouseleave = () => btn.style.background = 'transparent';
+          linkWrap.appendChild(btn);
+        });
+        document.getElementById('modal-pills').after(linkWrap);
+      }
       document.getElementById('modal-overlay').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -1709,6 +1719,41 @@ if (p.links) {
         card.classList.toggle('flipped');
       });
     });
+
+    /* ── Typing animation ── */
+    const typingPhrases = [
+      'Building ML pipelines that actually work.',
+      'Turning messy data into clear stories.',
+      'Researching how people trust AI visuals.',
+      'Always learning, always exploring.'
+    ];
+    const typingEl = document.getElementById('typing-text');
+    let phraseIdx = 0, charIdx = 0, deleting = false;
+
+    function typeLoop() {
+      const phrase = typingPhrases[phraseIdx];
+      if (!deleting) {
+        charIdx++;
+        typingEl.innerHTML = phrase.slice(0, charIdx) + '<span class="cursor"></span>';
+        if (charIdx === phrase.length) {
+          deleting = true;
+          setTimeout(typeLoop, 1800);
+          return;
+        }
+        setTimeout(typeLoop, 45);
+      } else {
+        charIdx--;
+        typingEl.innerHTML = phrase.slice(0, charIdx) + '<span class="cursor"></span>';
+        if (charIdx === 0) {
+          deleting = false;
+          phraseIdx = (phraseIdx + 1) % typingPhrases.length;
+          setTimeout(typeLoop, 400);
+          return;
+        }
+        setTimeout(typeLoop, 25);
+      }
+    }
+    typeLoop();
   </script>
 </body>
 
