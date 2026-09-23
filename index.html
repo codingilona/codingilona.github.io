@@ -230,6 +230,13 @@
       margin-bottom: 72px;
     }
 
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
+    .intro-grid section { margin-bottom: 0; }
+    .intro-grid .bio-card { height: calc(100% - 76px); }
+    .intro-grid .skills-wrap { height: calc(100% - 76px); }
+    .recognition-grid { display: grid; grid-template-columns: 0.9fr 1.5fr; gap: 14px; align-items: stretch; }
+    .recognition-grid .award-card, .recognition-grid .comp-card { height: 100%; }
+
     /* Bio */
     .bio-card {
       background: white;
@@ -308,16 +315,20 @@
     /* Projects */
     .projects-grid {
       display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 14px;
+      align-items: stretch;
     }
 
     .project-card {
       background: white;
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 28px 32px;
+      padding: 24px 26px;
       cursor: pointer;
       transition: transform .25s, border-color .25s, box-shadow .25s;
+      display: flex;
+      flex-direction: column;
     }
 
     .project-card:hover {
@@ -330,11 +341,14 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 20px;
+      gap: 16px;
+      height: 100%;
     }
 
     .project-card-left {
       flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .project-top {
@@ -347,17 +361,18 @@
 
     .project-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 500;
       color: var(--ink);
     }
 
     .project-badge {
       font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       padding: 3px 10px;
       border-radius: 100px;
       letter-spacing: 0.05em;
+      white-space: nowrap;
     }
 
     .badge-award {
@@ -391,20 +406,22 @@
     }
 
     .project-desc {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: var(--ink-muted);
-      line-height: 1.65;
+      line-height: 1.6;
       margin-bottom: 14px;
+      flex: 1;
     }
 
     .project-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
+      margin-top: auto;
     }
 
     .project-pill {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--ink-muted);
       background: var(--cream);
       border: 1px solid var(--border);
@@ -413,8 +430,8 @@
     }
 
     .project-arrow {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       border: 1px solid var(--border);
       display: flex;
@@ -434,6 +451,7 @@
     /* Education flip cards */
     .edu-grid {
       display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
 
@@ -1072,10 +1090,14 @@
         height: 100px;
       }
 
+      .intro-grid,
       .skills-wrap,
       .scores-grid,
       .interests-grid,
-      .comp-takeaways {
+      .comp-takeaways,
+      .projects-grid,
+      .edu-grid,
+      .recognition-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -1137,6 +1159,7 @@
 
   <main class="main">
 
+    <div class="intro-grid">
     <section id="about">
       <div class="section-heading">
         <span class="section-num">01</span>
@@ -1191,6 +1214,9 @@
         </div>
       </div>
     </section>
+
+    </section>
+    </div>
 
     <section id="projects">
       <div class="section-heading">
@@ -1346,9 +1372,10 @@
                 onerror="this.parentElement.innerHTML='<svg width=&quot;22&quot; height=&quot;22&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.2&quot; opacity=&quot;0.3&quot;><rect x=&quot;3&quot; y=&quot;3&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot;/><circle cx=&quot;8.5&quot; cy=&quot;8.5&quot; r=&quot;1.5&quot;/><path d=&quot;m21 15-5-5L5 21&quot;/></svg><span>add photo 2</span>'"></div>
             <div class="gallery-slot"><img src="corning3.jpg" alt="Corning internship photo 3"
                 onerror="this.parentElement.innerHTML='<svg width=&quot;22&quot; height=&quot;22&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.2&quot; opacity=&quot;0.3&quot;><rect x=&quot;3&quot; y=&quot;3&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot;/><circle cx=&quot;8.5&quot; cy=&quot;8.5&quot; r=&quot;1.5&quot;/><path d=&quot;m21 15-5-5L5 21&quot;/></svg><span>add photo 3</span>'"></div>
+            <div class="gallery-slot"><img src="corning4.jpg" alt="Corning internship photo 4"
+                onerror="this.parentElement.innerHTML='<span>add photo 4</span>'"></div>
           </div>
         </div>
-      </div>
     </section>
 
     <section id="education">
@@ -1442,26 +1469,9 @@
       </div>
     </section>
 
-    <section id="awards">
-      <div class="section-heading">
-        <span class="section-num">06</span>
-        <h2><em>Awards</em></h2>
-        <div class="section-rule"></div>
-      </div>
-      <div class="award-card">
-        <div class="award-medal">🏅</div>
-        <div>
-          <div class="award-title">Innoserve International Competition — 2nd Place</div>
-          <div class="award-desc">WishGather: AI-Assisted Sustainable Offering Platform · November 2024 · 100+
-            participants</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Competition ── -->
     <section id="competition">
       <div class="section-heading">
-        <span class="section-num">07</span>
+        <span class="section-num">06</span>
         <h2><em>Competition</em></h2>
         <div class="section-rule"></div>
       </div>
@@ -1473,10 +1483,12 @@
             <div class="comp-title">UIUC Datathon</div>
             <span class="comp-date">Mar 29 – 31, 2026</span>
           </div>
+
           <div class="comp-task">
             Task — Predict customer service call volume for August 2025, every 30 minutes: incoming calls, abandonment
             rate &amp; average call duration
           </div>
+
           <div class="comp-body">
             <p>Teamed up with classmates to tackle a real-world forecasting challenge: predicting a customer service
               center's call volume at 30-minute intervals, including incoming call counts, abandonment rate, and average
@@ -1486,21 +1498,20 @@
               information. Communicating assumptions clearly with teammates turned out to be just as important as the
               modeling itself.</p>
           </div>
+
           <div class="comp-takeaways">
             <div class="comp-takeaway">
               <div class="comp-takeaway-icon">📊</div>
               <div>
-                <div class="comp-takeaway-label">Key insight</div>
-                <div class="comp-takeaway-text">Real-world analysis means making reliable decisions under uncertainty,
-                  not just chasing accuracy</div>
+                <div class="comp-takeaway-label">Forecasting</div>
+                <div class="comp-takeaway-text">Worked with time-series data at 30-minute intervals to forecast multiple customer-service metrics.</div>
               </div>
             </div>
             <div class="comp-takeaway">
               <div class="comp-takeaway-icon">🤝</div>
               <div>
                 <div class="comp-takeaway-label">Teamwork</div>
-                <div class="comp-takeaway-text">Constant alignment on assumptions strengthened both collaboration and
-                  problem-solving skills</div>
+                <div class="comp-takeaway-text">Collaborated with classmates and communicated assumptions throughout the modeling process.</div>
               </div>
             </div>
           </div>
